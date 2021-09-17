@@ -22,13 +22,14 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
-app.get("/articles",  function(req, res){
+app.route("/articles")
+.get(function(req, res){
   Article.find(function(err, foundArticles){
     console.log(foundArticles);
   });
-});
+})
 
-app.post("/articles", function(req, res){
+.post(function(req, res){
   const newArticle = new Article({
     title: req.body.title,
     content: req.body.content
@@ -40,9 +41,9 @@ app.post("/articles", function(req, res){
       res.send(err);
     }
   });
-});
+})
 
-app.delete("/articles", function(req,res){
+.delete(function(req,res){
   Article.deleteMany(function(err){
     if(!err){
       res.send("Successfully deleted all articles");
@@ -51,6 +52,8 @@ app.delete("/articles", function(req,res){
     }
   });
 });
+
+
 
 app.listen(3000, function(){
   console.log("Server started on port 3000");
