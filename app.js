@@ -15,6 +15,10 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true});
 
+const articleSchema = {
+  title: String,
+  content: String
+};
 
 app.listen(3000, function(){
   console.log("Server started on port 3000");
